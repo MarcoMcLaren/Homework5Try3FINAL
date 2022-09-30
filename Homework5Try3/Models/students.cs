@@ -12,7 +12,7 @@ namespace Homework5Try3.Models
         public string surname { get; set; }
         public DateTime birthdate { get; set; }
         public string gender { get; set; }
-        public int classs { get; set; }
+        public string classs { get; set; }
         public int point { get; set; }
     }
 }

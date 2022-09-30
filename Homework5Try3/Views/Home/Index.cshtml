@@ -88,7 +88,7 @@
                 UNCERTAIN
             </td>
             <td>
-                @Html.ActionLink("View", "Index", "Borrowed", new { id = item.bookId }, new { })
+                @Html.ActionLink("View", "Index", "Borrowed", new { id = item.bookId }, new { @class = "btn btn-primary" })
             </td>
         </tr>
     }
@@ -98,7 +98,6 @@
 <script>
 
     $(document).ready(function () {
-
         $("#clear").on("click", function () {
             $("#searchtext").val("");
             $("#author").val("");

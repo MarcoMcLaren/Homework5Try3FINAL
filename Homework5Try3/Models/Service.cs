@@ -109,19 +109,17 @@ namespace Homework5Try3.Models
             try
             {
                 openConnection();
-                SqlCommand command = new SqlCommand("SELECT * from students", currConnection);
+                SqlCommand command = new SqlCommand("SELECT students.studentId, students.name, students.surname, students.class, students.point from students", currConnection);
                 using (SqlDataReader reader = command.ExecuteReader()) //lees van databasisse gebruik ExcecuteRader, NA databasis stuur ExcecuteNonQuery
                 {
                     while (reader.Read())
                     {
                         students tmpDest = new students();
-                        tmpDest.studentId = Convert.ToInt32(reader["studentId"]);
-                        tmpDest.name = Convert.ToString(reader["name"]);
-                        tmpDest.surname = Convert.ToString(reader["surname"]);
-                        tmpDest.birthdate = (DateTime)reader["birthdate"];
-                        tmpDest.gender = Convert.ToString(reader["gender"]);
-                        tmpDest.classs = Convert.ToInt32(reader["class"]);
-                        tmpDest.point = Convert.ToInt32(reader["point"]);
+                        tmpDest.studentId = Convert.ToInt32(reader[0]);
+                        tmpDest.name = Convert.ToString(reader[1]);
+                        tmpDest.surname = Convert.ToString(reader[2]);
+                        tmpDest.classs = Convert.ToString(reader[3]);
+                        tmpDest.point = Convert.ToInt32(reader[4]);
                         students.Add(tmpDest);
                     }
                 }
