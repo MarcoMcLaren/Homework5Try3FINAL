@@ -134,37 +134,5 @@ namespace Homework5Try3.Models
             return students;
         }
 
-        //--------------------------------------------GET ALL FITERED BOOKS----------------------------------------------------------------------
-        public List<books> getAllFilteredBooks(string name, string author, string type)
-        {
-            List<books> books = new List<books>();
-
-            try
-            {
-                openConnection();
-                SqlCommand command = new SqlCommand("SELECT books.bookId, books.name, authors.surname, types.name, books.pagecount, books.point from books INNER JOIN authors ON authors.authorId = books.authorId INNER JOIN types ON books.typeId = types.typeId", currConnection);
-                using (SqlDataReader reader = command.ExecuteReader()) //lees van databasisse gebruik ExcecuteRader, NA databasis stuur ExcecuteNonQuery
-                {
-                    while (reader.Read())
-                    {
-                        books tmpDest = new books();
-                        tmpDest.bookId = Convert.ToInt32(reader[0]);
-                        tmpDest.name = Convert.ToString(reader[1]);
-                        tmpDest.author = Convert.ToString(reader[2]);
-                        tmpDest.type = Convert.ToString(reader[3]);
-                        tmpDest.pagecount = Convert.ToInt32(reader[4]);
-                        tmpDest.point = Convert.ToInt32(reader[5]);
-
-                        books.Add(tmpDest);
-                    }
-                }
-                closeConnection();
-            }
-            catch
-            {
-            }
-
-            return books;
-        }
     }
 }

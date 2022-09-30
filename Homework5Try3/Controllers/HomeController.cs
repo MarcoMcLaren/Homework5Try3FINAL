@@ -24,6 +24,15 @@ namespace Homework5Try3.Controllers
         public ActionResult Index(string searchtext, string author,string type)
         {
             List<books> books = dataService.getAllBooks().Where(x => x.name.Contains(searchtext)).ToList();
+            if(author.Length != 0)
+            {
+                books = books.Where(x => x.author.Contains(author)).ToList();
+                
+            }
+            if(type.Length != 0)
+            {
+                books = books.Where(x => x.type.Contains(type)).ToList();
+            }
             return View(books);
         }
     }
